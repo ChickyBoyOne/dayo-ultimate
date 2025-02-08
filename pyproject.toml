@@ -1,0 +1,9 @@
+[project]
+name = "dayo-ultimate"
+version = "0.1.0"
+description = "Telegram speechfucker"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "telethon>=1.38.1",
+]
