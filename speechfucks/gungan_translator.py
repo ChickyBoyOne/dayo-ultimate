@@ -1,5 +1,3 @@
-import re
-
 from bs4 import BeautifulSoup, SoupStrainer
 import httpx
 from telethon.tl.custom.message import Message
