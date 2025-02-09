@@ -24,13 +24,6 @@ NAME = "Fat Text Generator by SkeleSoda"
 ID = "fat_text_generator"
 
 DATA_DIR = Path(__file__).parent / (ID + "_data")
-script = None
-
-PRELUDE = """
-document = {}
-
-document.getElement
-"""
 
 # Get the fat text generator code from SkeleSoda on itch.io: https://skelesoda.itch.io/fat-speak-translator
 async def setup():
