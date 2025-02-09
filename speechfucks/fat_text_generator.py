@@ -1,14 +1,27 @@
 # Feel free to edit the options below!
 
-# Can be none, some, or constant
+# Select the amount of SFX you want!
+# Can be "none", "some", or "constant"
 SFX_AMOUNT = "none"
 
+# Select what SFX you want!
+# Can be True or False
+
+# Toggle Burp & Moan SFX
 SFX_BURP_AND_MOAN = True
+# Toggle Eating SFX
 SFX_EATING = False
+# Toggle Toot SFX
 SFX_TOOT = False
 
+# Add these to make your blob slur their words!
+# Can be True or False
+
+# Toggle extra 'h' after Vowels
 SLUR_EXTRA_H_AFTER_VOWELS = False
+# Toggle extra Vowels
 SLUR_EXTRA_VOWELS = False
+# Toggle Burp Interupts
 SLUR_BURP_INTERRUPTS = False
 
 # == END OPTIONS SECTION - DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING ==
@@ -39,6 +52,9 @@ async def setup():
     if not script_match:
         raise Exception(f"Could not match script in Fat Speak Translator page! {text}")
     script = script_match.group("script")
+
+    if SFX_AMOUNT not in ["none", "some", "constant"]:
+        raise Exception(f"SFX_AMOUNT contains an invalid string: {SFX_AMOUNT}")
 
     options = {
         "iCheckbox1": SFX_AMOUNT == "none",
