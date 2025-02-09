@@ -32,8 +32,8 @@ async def main():
 
     if all_speechfucks:
         print("Speechfucks loaded:")
-        for speechfuck in all_speechfucks.values():
-            print(" - " + speechfuck.NAME)
+        for speechfuck_id, speechfuck in all_speechfucks.items():
+            print(f" - {speechfuck.NAME} ({speechfuck_id})")
     else:
         print("No speechfucks loaded!")
 
