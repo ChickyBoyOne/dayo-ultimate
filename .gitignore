@@ -177,5 +177,5 @@ cython_debug/
 
 # == My additions ==
 
+telegram_account.session*
 telegram_secrets.py
-dayo-ultimate.session*
