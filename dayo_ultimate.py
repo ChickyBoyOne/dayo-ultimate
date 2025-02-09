@@ -48,7 +48,7 @@ async def main():
             return
         
         if message.chat_id not in active_chats:
-            await provide_feedback_and_delete(message, f"No speechfuck has been started for this chat!")
+            await provide_feedback_and_delete(message, "No speechfuck has been started for this chat!")
             return
 
         await provide_feedback_and_delete(message, f"Stopping speechfuck {active_chats[message.chat_id].NAME}!")
