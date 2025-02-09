@@ -8,7 +8,7 @@
             "name": "Run Dayo Ultimate",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/dayo-ultimate.py",
+            "program": "${workspaceFolder}/dayo_ultimate.py",
             "console": "integratedTerminal"
         }
     ]
