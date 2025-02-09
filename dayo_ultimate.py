@@ -21,10 +21,13 @@ async def provide_feedback_and_delete(message: tl.message.Message, feedback: str
 async def main():
     active_chats = {}
     all_speechfucks = {}
+    speechfuck_search = {}
 
-    for _, name, _ in pkgutil.iter_modules(["speechfucks"]):
-        speechfuck = importlib.import_module(f"speechfucks.{name}")
-        all_speechfucks[speechfuck.ID] = speechfuck
+    for _, speechfuck_id, _ in pkgutil.iter_modules(["speechfucks"]):
+        speechfuck = importlib.import_module(f"speechfucks.{speechfuck_id}")
+        all_speechfucks[speechfuck_id] = speechfuck
+        speechfuck_search[speechfuck_id] = speechfuck_id
+        speechfuck_search[speechfuck.NAME.lower()] = speechfuck_id
         await getattr(speechfuck, "setup", NOOP_0)()
 
     if all_speechfucks:
@@ -75,8 +78,25 @@ async def main():
             return
         speechfuck_id = split[1]
         if speechfuck_id not in all_speechfucks:
-            await provide_feedback_and_delete(message, f"Couldn't find speechfuck `{speechfuck_id}!")
-            return
+            possibilities = set()
+
+            for possibility, possibility_id in speechfuck_search.items():
+                if speechfuck_id in possibility:
+                    possibilities.add(possibility_id)
+            
+            num_possibilities = len(possibilities)
+            if num_possibilities == 1:
+                speechfuck_id = next(iter(possibilities))
+            elif num_possibilities > 1:
+                feedback = f"Multiple possibilities for speechfuck `{speechfuck_id}`:\n"
+                for possibility in possibilities:
+                    speechfuck = all_speechfucks[possibility]
+                    feedback += f" - {speechfuck.NAME} (`{possibility}`)"
+                await provide_feedback_and_delete(message, feedback)
+                return
+            else:
+                await provide_feedback_and_delete(message, f"Couldn't find speechfuck `{speechfuck_id}`!")
+                return
         
         speechfuck = all_speechfucks[speechfuck_id]
         active_chats[message.chat_id] = speechfuck
