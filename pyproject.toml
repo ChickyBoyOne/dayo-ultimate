@@ -5,6 +5,8 @@ description = "Telegram speechfucker"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "beautifulsoup4[cchardet,lxml]>=4.13.3",
+    "cchardet==2.2.0a2",
     "hishel>=0.1.1",
     "httpx>=0.28.1",
     "pythonmonkey>=1.1.0",

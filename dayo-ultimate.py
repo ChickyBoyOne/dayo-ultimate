@@ -7,7 +7,9 @@ import telethon.tl.custom as tl
 
 from telegram_secrets import API_HASH, API_ID
 
-async def NOOP(_):
+async def NOOP_0():
+    return
+async def NOOP_1(_):
     return
 STOP = "/stop"
 
@@ -23,7 +25,7 @@ async def main():
     for _, name, _ in pkgutil.iter_modules(["speechfucks"]):
         speechfuck = importlib.import_module(f"speechfucks.{name}")
         all_speechfucks[speechfuck.ID] = speechfuck
-        await speechfuck.setup()
+        await getattr(speechfuck, "setup", NOOP_0)()
 
     if all_speechfucks:
         print("Speechfucks loaded:")
@@ -56,11 +58,11 @@ async def main():
             return
         
         speechfuck = active_chats[message.chat_id]
-        await getattr(speechfuck, "on_message", NOOP)(message)
+        await getattr(speechfuck, "on_message", NOOP_1)(message)
         if message.out:
-            await getattr(speechfuck, "on_outgoing_message", NOOP)(message)
+            await getattr(speechfuck, "on_outgoing_message", NOOP_1)(message)
         else:
-            await getattr(speechfuck, "on_incoming_message", NOOP)(message)
+            await getattr(speechfuck, "on_incoming_message", NOOP_1)(message)
 
     @client.on(events.NewMessage(outgoing=True, pattern="/start "))
     async def start_handler(event: events.NewMessage.Event):
