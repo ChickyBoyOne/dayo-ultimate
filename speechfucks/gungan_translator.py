@@ -3,7 +3,6 @@ import httpx
 from telethon.tl.custom.message import Message
 
 NAME = "Gungan Translator"
-ID = "gungan_translator"
 
 # Run message through https://talklikejarjarday.com/gungan_translator/
 async def on_outgoing_message(message: Message):

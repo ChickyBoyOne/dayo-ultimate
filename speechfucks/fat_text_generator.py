@@ -21,9 +21,9 @@ import pythonmonkey as pm
 from telethon.tl.custom.message import Message
 
 NAME = "Fat Text Generator by SkeleSoda"
-ID = "fat_text_generator"
 
-DATA_DIR = Path(__file__).parent / (ID + "_data")
+SELF = Path(__file__)
+DATA_DIR = SELF.parent / (SELF.stem + "_data")
 
 # Get the fat text generator code from SkeleSoda on itch.io: https://skelesoda.itch.io/fat-speak-translator
 async def setup():
